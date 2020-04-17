@@ -10,7 +10,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/josephspurrier/goversioninfo"
+	"github.com/smuething/goversioninfo"
 )
 
 func main() {
@@ -90,7 +90,7 @@ func main() {
 
 	// Override from flags.
 	if *flagIcon != "" {
-		vi.IconPath = *flagIcon
+		vi.IconPath = append(vi.IconPath, *flagIcon)
 	}
 	if *flagManifest != "" {
 		vi.ManifestPath = *flagManifest

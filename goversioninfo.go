@@ -33,8 +33,8 @@ type VersionInfo struct {
 	Timestamp      bool
 	Buffer         bytes.Buffer
 	Structure      VSVersionInfo
-	IconPath       string `json:"IconPath"`
-	ManifestPath   string `json:"ManifestPath"`
+	IconPath       []string `json:"IconPath"`
+	ManifestPath   string   `json:"ManifestPath"`
 }
 
 // Translation with langid and charsetid.
@@ -215,8 +215,8 @@ func (vi *VersionInfo) WriteSyso(filename string, arch string) error {
 	}
 
 	// If icon is enabled
-	if vi.IconPath != "" {
-		if err := addIcon(coff, vi.IconPath, newID); err != nil {
+	for _, icon := range vi.IconPath {
+		if err := addIcon(coff, icon, newID); err != nil {
 			return err
 		}
 	}
